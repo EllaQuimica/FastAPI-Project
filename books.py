@@ -38,8 +38,19 @@ async def read_category_by_query(category: str):
             books_to_return.append(book)
     return books_to_return
 
+#Create a new API Endpoint - GET all books from a specific author using either Path Parameters or Query Parameters.
+# Query Parameter
+@app.get("/books/{author}/")
+async def read_all_books_author_by_query(author: str):
+    books_to_return = []
+    for book in BOOKS:
+        if book.get('author').casefold() == author.casefold():
+            books_to_return.append(book)
+    return books_to_return
+
 
 # Get all books from a specific author using path or query parameters
+# path Parameter 
 @app.get("/books/byauthor/")
 async def read_books_by_author_path(author: str):
     books_to_return = []
@@ -71,3 +82,10 @@ async def update_book(update_book = Body()):
     for i in range(len(BOOKS)):
         if BOOKS[i].get('title').casefold == update_book.get('title').casefold():
             BOOKS[i] = update_book
+
+@app.delete("/book/delete_book/{book_title}")
+async def delete_book(book_title: str):
+    for i in range(len(BOOKS)):
+        if BOOKS[i].get('title').casefold() == book_title.casefold():
+            BOOKS.pop(i)
+            break
