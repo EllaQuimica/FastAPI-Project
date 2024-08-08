@@ -1,9 +1,5 @@
 from fastapi import FastAPI
-<<<<<<< HEAD
 from pydantic import BaseModel
-=======
-
->>>>>>> master
 
 app = FastAPI()
 
@@ -22,7 +18,6 @@ class Book:
         self.rating = rating
 
 
-<<<<<<< HEAD
 # Created a new object for data validation in BOOK using PyDantic
 class BookRequest(BaseModel):
     id: int
@@ -31,8 +26,6 @@ class BookRequest(BaseModel):
     description: str
     rating: str
 
-=======
->>>>>>> master
 
 BOOKS= [
     Book(1, 'Computer Science Pro', 'codingwithroby', 'A very nice book!', 5),
@@ -47,13 +40,10 @@ BOOKS= [
 async def read_all_books():
     return BOOKS
 
-<<<<<<< HEAD
 @app.post("/create_book")
 #async def create_book(book_request = Body()):
 async def create_book(book_request: BookRequest):
     new_book = Book(**book_request.model_dump())
     BOOKS.append(new_book)
-=======
->>>>>>> master
 
 
